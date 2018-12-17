@@ -1,8 +1,11 @@
 #!/usr/bin/env node
-
+// Copyright 2016-2018 AJ ONeal. All rights reserved
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 'use strict';
 
-var certpem = require('../').certpem;
+var certinfo = require('../');
 var path = require('path');
 var filepath = (process.cwd() + path.sep + 'cert.pem');
 var debug = false;
@@ -30,9 +33,9 @@ else {
 }
 
 if (debug) {
-  console.info(JSON.stringify(certpem.debug(cert), null, '  '));
+  console.info(JSON.stringify(certinfo.debug(cert), null, '  '));
 } else {
-  var c = certpem.info(cert);
+  var c = certinfo.info(cert);
 
   if (json) {
     console.info(JSON.stringify(c, null, '  '));

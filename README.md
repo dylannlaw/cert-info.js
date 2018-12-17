@@ -1,51 +1,57 @@
-cert-info.js
-============
+# [cert-info.js](https://git.coolaj86.com/coolaj86/cert-info.js)
 
 Read basic info from a cert.pem / x509 certificate.
 
 Used for [Greenlock.js](https://git.coolaj86.com/coolaj86/greenlock-express.js)
 
-Install
-=======
+# Features
+
+| <175 lines of code | 1.7k gzipped | 4.4k minified | 8.8k with comments |
+
+* [x] Parses x.509 certificate schemas
+  * [x] DER/ASN.1
+  * [x] PEM (base64-encoded DER)
+  * [x] Subject
+  * [x] SAN extension (altNames)
+  * [x] Issuance Date (notBefore)
+  * [x] Expiry Date (notAfter)
+* [x] VanillaJS, **Zero Dependencies**
+  * [x] Node.js
+  * [ ] Browsers (built, publishing soon)
+
+# Install
 
 ```bash
 # bin
-npm install --global certpem
+npm install --global cert-info
 
 # node.js library
-npm install --save certpem
+npm install --save cert-info
 ```
 
-Usage
-=====
+# Usage
 
-CLI
----
+## CLI
 
 For basic info (subject, altnames, issuedAt, expiresAt):
 
 ```bash
-certpem /path/to/cert.pem
+cert-info /path/to/cert.pem
 ```
 
-Output all info by passing `--debug` or use `--json` to see the basic info pretty-printed.
-
-node.js
--------
+## node.js
 
 ```javascript
 'use strict';
 
-var certpem = require('certpem').certpem
+var certinfo = require('cert-info');
 var cert = fs.readFile('cert.pem', 'ascii', function (err, certstr) {
 
   // basic info
-  console.info(certpem.info(certstr));
+  console.info(certinfo.info(certstr));
 
-  // way too much info
-  // (requires npm install --save node.extend@1)
-  console.info(certpem.debug(certstr));
-
+  // if you need to submit a bug report
+  console.info(certinfo.debug(certstr));
 });
 ```
 
@@ -53,13 +59,21 @@ Example output:
 
 ```javascript
 {
-  "subject": "localhost.daplie.com",
+  "subject": "localhost.example.com",
   "altnames": [
-    "localhost.daplie.com"
+    "localhost.example.com"
   ],
   "issuedAt": 1465516800000,
   "expiresAt": 1499731199000
 }
 ```
 
-With a few small changes this could also work in the browser (that's how its dependencies are designed).
+With a few small changes this could also work in the browser
+(it has no dependencies and all of the non-browser things are on the Enc object).
+
+# Legal
+
+[cert-info.js](https://git.coolaj86.com/coolaj86/cert-info.js) |
+MPL-2.0 |
+[Terms of Use](https://therootcompany.com/legal/#terms) |
+[Privacy Policy](https://therootcompany.com/legal/#privacy)
