@@ -1,6 +1,6 @@
 {
   "name": "cert-info",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "Read basic info (subject, altnames, expiresAt, issuedAt) from a cert.pem / x509 certificate (tls / ssl / https) ",
   "main": "index.js",
   "author": "AJ ONeal <coolaj86@gmail.com> (https://coolaj86.com/)",
